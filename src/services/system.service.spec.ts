@@ -12,4 +12,18 @@ describe('System Service', () => {
           }
       }
   });
+
+  test('the isRobot function is working', () => {
+    expect(systemService.isRobot("")).toBe(false);
+    expect(systemService.isRobot("robot")).toBe(false);
+    expect(systemService.isRobot("xyz")).toBe(false);
+    expect(systemService.isRobot("robot-NORTH")).toBe(true);
+    expect(systemService.isRobot("robot-EAST")).toBe(true);
+    expect(systemService.isRobot("robot-SOUTH")).toBe(true);
+    expect(systemService.isRobot("robot-WEST")).toBe(true);
+  });
+
+  test('the report function is working', () => {
+    expect(systemService.report()).toBe("");
+  });
 });
