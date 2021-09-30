@@ -1,7 +1,5 @@
-import Robot from "./robot.type";
-
 export default interface Cell {
     col: number,
     row: number,
-    type: Robot | "Wall" | "empty";
+    type: "robot-NORTH" | "robot-EAST" | "robot-SOUTH" | "robot-WEST" | "wall" | "empty";
 }
