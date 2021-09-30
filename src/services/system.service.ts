@@ -35,6 +35,54 @@ class SystemService {
 
         return "";
     }
+
+    left(): void {
+        const report = this.report();
+        if (report.length > 0) {
+            const reportParts = report.split(",");
+            const row = reportParts[0];
+            const col = reportParts[1];
+
+            switch (this.board[+col][+row].type) {
+                case "robot-NORTH":
+                    this.board[+col][+row].type = "robot-WEST";
+                    break;
+                case "robot-EAST":
+                    this.board[+col][+row].type = "robot-NORTH";
+                    break;
+                case "robot-SOUTH":
+                    this.board[+col][+row].type = "robot-EAST";
+                    break;
+                case "robot-WEST":
+                    this.board[+col][+row].type = "robot-SOUTH";
+                    break;
+            }
+        }
+    }
+
+    right(): void {
+        const report = this.report();
+        if (report.length > 0) {
+            const reportParts = report.split(",");
+            const row = reportParts[0];
+            const col = reportParts[1];
+
+            switch (this.board[+col][+row].type) {
+                case "robot-NORTH":
+                    this.board[+col][+row].type = "robot-EAST";
+                    break;
+                case "robot-EAST":
+                    this.board[+col][+row].type = "robot-SOUTH";
+                    break;
+                case "robot-SOUTH":
+                    this.board[+col][+row].type = "robot-WEST";
+                    break;
+                case "robot-WEST":
+                    this.board[+col][+row].type = "robot-NORTH";
+                    break;
+            }
+        }
+    }
 }
 
 export default SystemService;
