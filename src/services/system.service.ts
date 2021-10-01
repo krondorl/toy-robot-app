@@ -5,7 +5,10 @@ class SystemService {
 
     constructor() {
         this.board = [];
+        this.create();
+    }
 
+    create(): void {
         for(let i: number = 0; i < 5; i++) {
             this.board[i] = [];
             for(let j: number = 0; j< 5; j++) {
@@ -14,6 +17,14 @@ class SystemService {
                     row: (5 - j),
                     type: "empty"
                 };
+            }
+        }
+    }
+
+    clear(): void {
+        for(let i: number = 0; i < 5; i++) {
+            for(let j: number = 0; j< 5; j++) {
+                this.board[i][j].type = "empty";
             }
         }
     }
