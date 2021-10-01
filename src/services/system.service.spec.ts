@@ -33,6 +33,7 @@ describe('System Service', () => {
     });
 
     test('left function', () => {
+        systemService.board[0][4].type = "empty";
         systemService.board[2][2].type = "robot-NORTH";
         systemService.left();
         expect(systemService.board[2][2].type).toBe("robot-WEST");
@@ -44,15 +45,15 @@ describe('System Service', () => {
         expect(systemService.board[2][2].type).toBe("robot-NORTH");
     });
 
-    // test('right function', () => {
-    //     systemService.board[2][2].type = "robot-NORTH";
-    //     systemService.right();
-    //     expect(systemService.board[2][2].type).toBe("robot-EAST");
-    //     systemService.right();
-    //     expect(systemService.board[2][2].type).toBe("robot-SOUTH");
-    //     systemService.right();
-    //     expect(systemService.board[2][2].type).toBe("robot-WEST");
-    //     systemService.right();
-    //     expect(systemService.board[2][2].type).toBe("robot-NORTH");
-    // });
+    test('right function', () => {
+        systemService.board[2][2].type = "robot-NORTH";
+        systemService.right();
+        expect(systemService.board[2][2].type).toBe("robot-EAST");
+        systemService.right();
+        expect(systemService.board[2][2].type).toBe("robot-SOUTH");
+        systemService.right();
+        expect(systemService.board[2][2].type).toBe("robot-WEST");
+        systemService.right();
+        expect(systemService.board[2][2].type).toBe("robot-NORTH");
+    });
 });

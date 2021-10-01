@@ -64,29 +64,31 @@ class SystemService {
         }
     }
 
-    // right(): void {
-    //     const report = this.report();
-    //     if (report.length > 0) {
-    //         const reportParts = report.split(",");
-    //         const row = reportParts[0];
-    //         const col = reportParts[1];
+    right(): void {
+        const report = this.report();
+        if (report.length > 0) {
+            const reportParts = report.split(",");
+            const row = reportParts[0];
+            const col = reportParts[1];
+            const translateRow = 5 - (+row);
+            const translateCol = (+col) - 1;
 
-    //         switch (this.board[+col][+row].type) {
-    //             case "robot-NORTH":
-    //                 this.board[+col][+row].type = "robot-EAST";
-    //                 break;
-    //             case "robot-EAST":
-    //                 this.board[+col][+row].type = "robot-SOUTH";
-    //                 break;
-    //             case "robot-SOUTH":
-    //                 this.board[+col][+row].type = "robot-WEST";
-    //                 break;
-    //             case "robot-WEST":
-    //                 this.board[+col][+row].type = "robot-NORTH";
-    //                 break;
-    //         }
-    //     }
-    // }
+            switch (this.board[translateCol][translateRow].type) {
+                case "robot-NORTH":
+                    this.board[translateCol][translateRow].type = "robot-EAST";
+                    break;
+                case "robot-EAST":
+                    this.board[translateCol][translateRow].type = "robot-SOUTH";
+                    break;
+                case "robot-SOUTH":
+                    this.board[translateCol][translateRow].type = "robot-WEST";
+                    break;
+                case "robot-WEST":
+                    this.board[translateCol][translateRow].type = "robot-NORTH";
+                    break;
+            }
+        }
+    }
 
     // // Check if there is a wall around the robot
     // isFrontWall(row: number, col: number): boolean {
