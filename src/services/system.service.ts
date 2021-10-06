@@ -313,20 +313,26 @@ class SystemService {
         if (command.length > 0) {
             let row = -1;
             let col = -1;
+            let facing = "";
             const commandParts = command.split(" ");
             const rawCommand = commandParts[0];
 
             if (commandParts[1]) {
                 let params = this.translateReportParts(commandParts[1]);
+
                 if (params.tRow !== undefined && params.tCol !== undefined) {
                     row = params.tRow;
                     col = params.tCol;
+                }
+
+                if (params.facing !== undefined) {
+                    facing = params.facing;
                 }
             }
 
             switch (rawCommand) {
                 case "PLACE_ROBOT":
-                    // this.placeRobot();
+                    this.placeRobot(col, row, facing);
                     break;
                 case "PLACE_WALL":
                     this.placeWall(col, row);
