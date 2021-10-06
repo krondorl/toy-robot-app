@@ -192,29 +192,69 @@ class SystemService {
         return isFrontWall;
     }
 
-    // move(): void {
-    //     const report = this.report();
-    //     if (report.length > 0) {
-    //         const reportParts = report.split(",");
-    //         const row = reportParts[0];
-    //         const col = reportParts[1];
+    moveNorth(col: number, row: number): void {
+        this.board[col][row].type = "empty";
+        if (row - 1 >= 0) {
+            this.board[col][row - 1].type = "robot-NORTH";
+        } else {
+            this.board[col][4].type = "robot-NORTH";
+        }
+    }
 
-    //         switch (this.board[+col][+row].type) {
-    //             case "robot-NORTH":
-    //                 this.board[+col][+row].type = "robot-EAST";
-    //                 break;
-    //             case "robot-EAST":
-    //                 this.board[+col][+row].type = "robot-SOUTH";
-    //                 break;
-    //             case "robot-SOUTH":
-    //                 this.board[+col][+row].type = "robot-WEST";
-    //                 break;
-    //             case "robot-WEST":
-    //                 this.board[+col][+row].type = "robot-NORTH";
-    //                 break;
-    //         }
-    //     }
-    // }
+    moveEast(col: number, row: number): void {
+        this.board[col][row].type = "empty";
+        if (col + 1 <= 4) {
+            this.board[col + 1][row].type = "robot-EAST";
+        } else {
+            this.board[0][row].type = "robot-EAST";
+        }
+    }
+
+    moveSouth(col: number, row: number): void {
+        this.board[col][row].type = "empty";
+        if (row + 1 <= 4) {
+            this.board[col][row + 1].type = "robot-SOUTH";
+        } else {
+            this.board[col][0].type = "robot-SOUTH";
+        }
+    }
+
+    moveWest(col: number, row: number): void {
+        this.board[col][row].type = "empty";
+        if (col - 1 >= 0) {
+            this.board[col - 1][row].type = "robot-WEST";
+        } else {
+            this.board[4][col].type = "robot-WEST";
+        }
+    }
+
+    move(): void {
+        const report = this.report();
+        if (report.length > 0) {
+            const reportParts = report.split(",");
+            const row = reportParts[0];
+            const col = reportParts[1];
+            const translateRow = 5 - (+row);
+            const translateCol = (+col) - 1;
+
+            if (!this.isFrontWall(translateCol, translateRow)) {
+                switch (this.board[translateCol][translateRow].type) {
+                    case "robot-NORTH":
+                        this.moveNorth(translateCol, translateRow);
+                        break;
+                    case "robot-EAST":
+                        this.moveEast(translateCol, translateRow);
+                        break;
+                    case "robot-SOUTH":
+                        this.moveSouth(translateCol, translateRow);
+                        break;
+                    case "robot-WEST":
+                        this.moveWest(translateCol, translateRow);
+                        break;
+                }
+            }
+        }
+    }
 }
 
 export default SystemService;
