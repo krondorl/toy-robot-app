@@ -224,7 +224,7 @@ class SystemService {
         if (col - 1 >= 0) {
             this.board[col - 1][row].type = "robot-WEST";
         } else {
-            this.board[4][col].type = "robot-WEST";
+            this.board[4][row].type = "robot-WEST";
         }
     }
 

@@ -169,4 +169,30 @@ describe('System Service', () => {
         expect(systemService.board[0][2].type).toBe("robot-EAST");
         expect(systemService.board[4][2].type).toBe("empty");
     });
+
+    test('moveSouth function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-SOUTH";
+        systemService.moveSouth(2, 2);
+        expect(systemService.board[2][3].type).toBe("robot-SOUTH");
+        expect(systemService.board[2][2].type).toBe("empty");
+        systemService.clear();
+        systemService.board[2][4].type = "robot-SOUTH";
+        systemService.moveSouth(2, 4);
+        expect(systemService.board[2][0].type).toBe("robot-SOUTH");
+        expect(systemService.board[2][4].type).toBe("empty");
+    });
+
+    test('moveWest function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-WEST";
+        systemService.moveWest(2, 2);
+        expect(systemService.board[1][2].type).toBe("robot-WEST");
+        expect(systemService.board[2][2].type).toBe("empty");
+        systemService.clear();
+        systemService.board[0][2].type = "robot-WEST";
+        systemService.moveWest(0, 2);
+        expect(systemService.board[4][2].type).toBe("robot-WEST");
+        expect(systemService.board[0][2].type).toBe("empty");
+    });
 });
