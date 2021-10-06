@@ -101,23 +101,84 @@ class SystemService {
         }
     }
 
-    // // Check if there is a wall around the robot
-    // isFrontWall(row: number, col: number): boolean {
-    //     const checkCell = this.board[col][row].type;
-    //       switch (checkCell) {
-    //         case "robot-NORTH":
-    //             if (this.board[col][row].type)
-    //             break;
-    //         case "robot-EAST":
-    //             break;
-    //         case "robot-SOUTH":
-    //             break;
-    //         case "robot-WEST":
-    //             break;
-    //     }
+    isNorthWall(col: number, row: number): boolean {
+        if (row - 1 >= 0) {
+            if (this.board[col][row - 1].type === "wall") {
+                return true; 
+            }
+        } else {
+            if (this.board[col][4].type === "wall") {
+                return true; 
+            }
+        }
 
-    //     return false;
-    // }
+        return false;
+    }
+
+    isSouthWall(col: number, row: number): boolean {
+        if (row + 1 <= 4) {
+            if (this.board[col][row + 1].type === "wall") {
+                return true; 
+            }
+        } else {
+            if (this.board[col][0].type === "wall") {
+                return true; 
+            }
+        }
+
+        return false;
+    }
+
+    isEastWall(col: number, row: number): boolean {
+        if (col + 1 <= 4) {
+            if (this.board[col + 1][row].type === "wall") {
+                return true; 
+            }
+        } else {
+            if (this.board[0][row].type === "wall") {
+                return true; 
+            }
+        }
+
+        return false;
+    }
+
+    isWestWall(col: number, row: number): boolean {
+        if (col + 1 <= 4) {
+            if (this.board[col + 1][row].type === "wall") {
+                return true; 
+            }
+        } else {
+            if (this.board[0][row].type === "wall") {
+                return true; 
+            }
+        }
+
+        return false;
+    }
+
+    // Check if there is a wall around the robot
+    // or the other side, based on direction
+    isFrontWall(col: number, row: number): boolean {
+        let isFrontWall = false;
+        const checkCell = this.board[col][row].type;
+          switch (checkCell) {
+            case "robot-NORTH":
+                isFrontWall = this.isNorthWall(col, row);
+                break;
+            case "robot-SOUTH":
+                isFrontWall = this.isSouthWall(col, row);
+                break;
+            case "robot-EAST":
+                isFrontWall = this.isEastWall(col, row);
+                break;
+            case "robot-WEST":
+                isFrontWall = this.isWestWall(col, row);
+                break;
+        }
+
+        return isFrontWall;
+    }
 
     // move(): void {
     //     const report = this.report();
