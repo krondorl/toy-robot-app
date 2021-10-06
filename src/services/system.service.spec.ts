@@ -234,4 +234,22 @@ describe('System Service', () => {
         systemService.placeWall(1, 1);
         expect(systemService.board[1][1].type).toBe("wall");
     });
+
+    test('placeRobot function', () => {
+        systemService.clear();
+        systemService.placeRobot(-1, 6, "north");
+        expect(systemService.isRobotOnBoard()).toBe(false);
+        systemService.placeWall(1, 1);
+        systemService.placeRobot(1, 1, "north");
+        expect(systemService.isRobotOnBoard()).toBe(false);
+        systemService.clear();
+        systemService.placeRobot(2, 2, "north");
+        expect(systemService.board[2][2].type).toBe("robot-NORTH");
+        systemService.placeRobot(0, 4, "east");
+        expect(systemService.board[0][4].type).toBe("robot-EAST");
+        systemService.placeRobot(1, 4, "south");
+        expect(systemService.board[1][4].type).toBe("robot-SOUTH");
+        systemService.placeRobot(2, 4, "west");
+        expect(systemService.board[2][4].type).toBe("robot-WEST");
+    });
 });
