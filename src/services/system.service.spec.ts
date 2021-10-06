@@ -13,6 +13,15 @@ describe('System Service', () => {
         }
     });
 
+    test('clear function', () => {
+        systemService.clear();
+        for(let i: number = 0; i < 5; i++) {
+            for(let j: number = 0; j< 5; j++) {
+                expect(systemService.board[i][j].type).toBe("empty");
+            }
+        }
+    });
+
     test('isRobot function', () => {
         expect(systemService.isRobot("")).toBe(false);
         expect(systemService.isRobot("robot")).toBe(false);
@@ -55,5 +64,15 @@ describe('System Service', () => {
         expect(systemService.board[2][2].type).toBe("robot-WEST");
         systemService.right();
         expect(systemService.board[2][2].type).toBe("robot-NORTH");
+    });
+
+    test('isNorthWall function', () => {
+        systemService.board[2][1].type = "wall";
+        expect(systemService.isNorthWall(2, 2)).toBe(true);
+        systemService.board[2][2].type = "empty";
+        systemService.board[2][1].type = "empty";
+        systemService.board[2][0].type = "robot-NORTH";
+        systemService.board[2][4].type = "wall";
+        expect(systemService.isNorthWall(2, 0)).toBe(true);
     });
 });
