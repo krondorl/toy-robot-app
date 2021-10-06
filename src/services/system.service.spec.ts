@@ -88,4 +88,17 @@ describe('System Service', () => {
         systemService.board[2][0].type = "wall";
         expect(systemService.isSouthWall(2, 4)).toBe(true);
     });
+
+    test('isEastWall function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-EAST";
+        systemService.board[3][2].type = "wall";
+        expect(systemService.isEastWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[4][2].type = "robot-EAST";
+        systemService.board[0][2].type = "wall";
+        expect(systemService.isEastWall(4, 2)).toBe(true);
+        systemService.board[0][2].type = "empty";
+        expect(systemService.isEastWall(4, 2)).toBe(false);
+    });
 });
