@@ -101,4 +101,16 @@ describe('System Service', () => {
         systemService.board[0][2].type = "empty";
         expect(systemService.isEastWall(4, 2)).toBe(false);
     });
+
+    test('isWestWall function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-WEST";
+        expect(systemService.isWestWall(2, 2)).toBe(false);
+        systemService.board[1][2].type = "wall";
+        expect(systemService.isWestWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[0][2].type = "robot-WEST";
+        systemService.board[4][2].type = "wall";
+        expect(systemService.isWestWall(0, 2)).toBe(true);
+    });
 });

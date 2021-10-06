@@ -144,12 +144,12 @@ class SystemService {
     }
 
     isWestWall(col: number, row: number): boolean {
-        if (col + 1 <= 4) {
-            if (this.board[col + 1][row].type === "wall") {
+        if (col - 1 >= 0) {
+            if (this.board[col - 1][row].type === "wall") {
                 return true; 
             }
         } else {
-            if (this.board[0][row].type === "wall") {
+            if (this.board[4][row].type === "wall") {
                 return true; 
             }
         }
