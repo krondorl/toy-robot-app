@@ -1,4 +1,5 @@
 import Cell from "../types/cell.type";
+import TranslatedCoordinates from "../types/translated-coordinates.type";
 
 class SystemService {
     board: Cell[][];
@@ -47,7 +48,7 @@ class SystemService {
     }
 
     // Translate coordinates
-    translateReportParts(report: string): object {
+    translateReportParts(report: string): TranslatedCoordinates {
         if (report.length > 0) {
             const reportParts = report.split(",");
             const row = reportParts[0];
@@ -246,20 +247,22 @@ class SystemService {
         if (report.length > 0) {
             const { tCol, tRow } = this.translateReportParts(report);
 
-            if (!this.isFrontWall(tCol, tRow)) {
-                switch (this.board[tCol][tRow].type) {
-                    case "robot-NORTH":
-                        this.moveNorth(tCol, tRow);
-                        break;
-                    case "robot-EAST":
-                        this.moveEast(tCol, tRow);
-                        break;
-                    case "robot-SOUTH":
-                        this.moveSouth(tCol, tRow);
-                        break;
-                    case "robot-WEST":
-                        this.moveWest(tCol, tRow);
-                        break;
+            if (tCol !== undefined && tRow !== undefined) {
+                if (!this.isFrontWall(tCol, tRow)) {
+                    switch (this.board[tCol][tRow].type) {
+                        case "robot-NORTH":
+                            this.moveNorth(tCol, tRow);
+                            break;
+                        case "robot-EAST":
+                            this.moveEast(tCol, tRow);
+                            break;
+                        case "robot-SOUTH":
+                            this.moveSouth(tCol, tRow);
+                            break;
+                        case "robot-WEST":
+                            this.moveWest(tCol, tRow);
+                            break;
+                    }
                 }
             }
         }
