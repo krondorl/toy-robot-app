@@ -77,4 +77,15 @@ describe('System Service', () => {
         systemService.board[2][4].type = "empty";
         expect(systemService.isNorthWall(2, 0)).toBe(false);
     });
+
+    test('isSouthWall function', () => {
+        systemService.board[2][1].type = "empty";
+        expect(systemService.isSouthWall(2, 2)).toBe(false);
+        systemService.board[2][3].type = "wall";
+        expect(systemService.isSouthWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[2][4].type = "robot-SOUTH";
+        systemService.board[2][0].type = "wall";
+        expect(systemService.isSouthWall(2, 4)).toBe(true);
+    });
 });
