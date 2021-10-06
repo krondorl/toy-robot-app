@@ -264,6 +264,35 @@ class SystemService {
             }
         }
     }
+
+    placeRobot(col: number, row: number, facing: string): void {
+        if (col >= 0 && col <= 4 && row >= 0 && row <= 4) {
+            if (this.board[col][row].type === "empty") {
+                switch (facing) {
+                    case "north":
+                        this.board[col][row].type = "robot-NORTH";
+                        break;
+                    case "east":
+                        this.board[col][row].type = "robot-EAST";
+                        break;
+                    case "south":
+                        this.board[col][row].type = "robot-SOUTH";
+                        break;
+                    case "west":
+                        this.board[col][row].type = "robot-WEST";
+                        break;
+                }
+            }
+        }
+    }
+
+    placeWall(col: number, row: number): void {
+        if (col >= 0 && col <= 4 && row >= 0 && row <= 4) {
+            if (this.board[col][row].type === "empty") {
+                this.board[col][row].type = "wall";
+            }
+        }
+    }
 }
 
 export default SystemService;
