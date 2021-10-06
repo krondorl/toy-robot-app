@@ -143,4 +143,30 @@ describe('System Service', () => {
         systemService.board[2][2].type = "robot-NORTH";
         expect(systemService.isRobotOnBoard()).toBe(true);
     });
+
+    test('moveNorth function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-NORTH";
+        systemService.moveNorth(2, 2);
+        expect(systemService.board[2][1].type).toBe("robot-NORTH");
+        expect(systemService.board[2][2].type).toBe("empty");
+        systemService.clear();
+        systemService.board[2][0].type = "robot-NORTH";
+        systemService.moveNorth(2, 0);
+        expect(systemService.board[2][4].type).toBe("robot-NORTH");
+        expect(systemService.board[2][2].type).toBe("empty");
+    });
+
+    test('moveEast function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-EAST";
+        systemService.moveEast(2, 2);
+        expect(systemService.board[3][2].type).toBe("robot-EAST");
+        expect(systemService.board[2][2].type).toBe("empty");
+        systemService.clear();
+        systemService.board[4][2].type = "robot-EAST";
+        systemService.moveEast(4, 2);
+        expect(systemService.board[0][2].type).toBe("robot-EAST");
+        expect(systemService.board[4][2].type).toBe("empty");
+    });
 });
