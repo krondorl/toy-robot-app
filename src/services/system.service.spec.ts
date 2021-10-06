@@ -226,4 +226,12 @@ describe('System Service', () => {
         expect(systemService.board[4][2].type).toBe("robot-WEST");
         expect(systemService.board[1][2].type).toBe("empty");
     });
+
+    test('placeWall function', () => {
+        systemService.clear();
+        systemService.placeWall(-1, 6);
+        expect(systemService.isRobotOnBoard()).toBe(false);
+        systemService.placeWall(1, 1);
+        expect(systemService.board[1][1].type).toBe("wall");
+    });
 });
