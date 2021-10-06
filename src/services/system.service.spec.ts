@@ -113,4 +113,27 @@ describe('System Service', () => {
         systemService.board[4][2].type = "wall";
         expect(systemService.isWestWall(0, 2)).toBe(true);
     });
+
+    test('isFrontWall function', () => {
+        systemService.clear();
+        systemService.board[2][2].type = "robot-NORTH";
+        systemService.board[2][1].type = "wall";
+        expect(systemService.isFrontWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[2][2].type = "robot-SOUTH";
+        systemService.board[2][3].type = "wall";
+        expect(systemService.isFrontWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[2][2].type = "robot-EAST";
+        systemService.board[3][2].type = "wall";
+        expect(systemService.isFrontWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[2][2].type = "robot-WEST";
+        systemService.board[1][2].type = "wall";
+        expect(systemService.isFrontWall(2, 2)).toBe(true);
+        systemService.clear();
+        systemService.board[2][0].type = "robot-NORTH";
+        systemService.board[2][4].type = "wall";
+        expect(systemService.isFrontWall(2, 0)).toBe(true);
+    });
 });
