@@ -46,6 +46,19 @@ class SystemService {
         return false;
     }
 
+    // Translate coordinates
+    translateReportParts(report: string): object {
+        if (report.length > 0) {
+            const reportParts = report.split(",");
+            const row = reportParts[0];
+            const col = reportParts[1];
+            const translateRow = 5 - (+row);
+            const translateCol = (+col) - 1;
+            return { tCol: translateCol, tRow: translateRow };
+        }
+        return {};
+    }
+
     report(): string {
         for(let i: number = 0; i < 5; i++) {
             for(let j: number = 0; j< 5; j++) {

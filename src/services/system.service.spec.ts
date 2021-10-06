@@ -195,4 +195,10 @@ describe('System Service', () => {
         expect(systemService.board[4][2].type).toBe("robot-WEST");
         expect(systemService.board[0][2].type).toBe("empty");
     });
+
+    test('translateReportParts function', () => {
+        expect(systemService.translateReportParts("")).toStrictEqual({});
+        expect(systemService.translateReportParts("1,1,NORTH")).toStrictEqual({ tCol: 0, tRow: 4});
+        expect(systemService.translateReportParts("5,5,SOUTH")).toStrictEqual({ tCol: 4, tRow: 0});
+    });
 });
