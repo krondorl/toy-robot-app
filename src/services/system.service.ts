@@ -54,7 +54,7 @@ class SystemService {
             const col = reportParts[1];
             const translateRow = 5 - (+row);
             const translateCol = (+col) - 1;
-            return { tCol: translateCol, tRow: translateRow };
+            return { "tCol": translateCol, "tRow": translateRow };
         }
         return {};
     }
@@ -244,25 +244,21 @@ class SystemService {
     move(): void {
         const report = this.report();
         if (report.length > 0) {
-            const reportParts = report.split(",");
-            const row = reportParts[0];
-            const col = reportParts[1];
-            const translateRow = 5 - (+row);
-            const translateCol = (+col) - 1;
+            const { tCol, tRow } = this.translateReportParts(report);
 
-            if (!this.isFrontWall(translateCol, translateRow)) {
-                switch (this.board[translateCol][translateRow].type) {
+            if (!this.isFrontWall(tCol, tRow)) {
+                switch (this.board[tCol][tRow].type) {
                     case "robot-NORTH":
-                        this.moveNorth(translateCol, translateRow);
+                        this.moveNorth(tCol, tRow);
                         break;
                     case "robot-EAST":
-                        this.moveEast(translateCol, translateRow);
+                        this.moveEast(tCol, tRow);
                         break;
                     case "robot-SOUTH":
-                        this.moveSouth(translateCol, translateRow);
+                        this.moveSouth(tCol, tRow);
                         break;
                     case "robot-WEST":
-                        this.moveWest(translateCol, translateRow);
+                        this.moveWest(tCol, tRow);
                         break;
                 }
             }

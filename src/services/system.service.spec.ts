@@ -201,4 +201,29 @@ describe('System Service', () => {
         expect(systemService.translateReportParts("1,1,NORTH")).toStrictEqual({ tCol: 0, tRow: 4});
         expect(systemService.translateReportParts("5,5,SOUTH")).toStrictEqual({ tCol: 4, tRow: 0});
     });
+
+    test('move function', () => {
+        systemService.clear();
+        systemService.board[2][1].type = "robot-NORTH";
+        systemService.move();
+        expect(systemService.board[2][0].type).toBe("robot-NORTH");
+        expect(systemService.board[2][1].type).toBe("empty");
+        systemService.clear();
+        systemService.board[3][2].type = "robot-EAST";
+        systemService.move();
+        expect(systemService.board[4][2].type).toBe("robot-EAST");
+        expect(systemService.board[3][2].type).toBe("empty");
+        systemService.clear();
+        systemService.board[2][3].type = "robot-SOUTH";
+        systemService.move();
+        systemService.move();
+        expect(systemService.board[2][0].type).toBe("robot-SOUTH");
+        expect(systemService.board[2][3].type).toBe("empty");
+        systemService.clear();
+        systemService.board[1][2].type = "robot-WEST";
+        systemService.move();
+        systemService.move();
+        expect(systemService.board[4][2].type).toBe("robot-WEST");
+        expect(systemService.board[1][2].type).toBe("empty");
+    });
 });
