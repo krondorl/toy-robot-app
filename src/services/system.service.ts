@@ -34,6 +34,18 @@ class SystemService {
         return robotTypes.includes(cellType);
     }
 
+    isRobotOnBoard(): boolean {
+        for(let i: number = 0; i < 5; i++) {
+            for(let j: number = 0; j< 5; j++) {
+                if (this.isRobot(this.board[i][j].type)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     report(): string {
         for(let i: number = 0; i < 5; i++) {
             for(let j: number = 0; j< 5; j++) {

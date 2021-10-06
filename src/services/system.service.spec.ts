@@ -136,4 +136,11 @@ describe('System Service', () => {
         systemService.board[2][4].type = "wall";
         expect(systemService.isFrontWall(2, 0)).toBe(true);
     });
+
+    test('isRobotOnBoard function', () => {
+        systemService.clear();
+        expect(systemService.isRobotOnBoard()).toBe(false);
+        systemService.board[2][2].type = "robot-NORTH";
+        expect(systemService.isRobotOnBoard()).toBe(true);
+    });
 });
