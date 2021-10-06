@@ -198,8 +198,10 @@ describe('System Service', () => {
 
     test('translateReportParts function', () => {
         expect(systemService.translateReportParts("")).toStrictEqual({});
-        expect(systemService.translateReportParts("1,1,NORTH")).toStrictEqual({ tCol: 0, tRow: 4});
-        expect(systemService.translateReportParts("5,5,SOUTH")).toStrictEqual({ tCol: 4, tRow: 0});
+        expect(systemService.translateReportParts("1,1")).toStrictEqual({ tCol: 0, tRow: 4});
+        expect(systemService.translateReportParts("1,1,NORTH")).toStrictEqual({ tCol: 0, tRow: 4, facing: "NORTH"});
+        expect(systemService.translateReportParts("5,5")).toStrictEqual({ tCol: 4, tRow: 0});
+        expect(systemService.translateReportParts("5,5,SOUTH")).toStrictEqual({ tCol: 4, tRow: 0, facing: "SOUTH"});
     });
 
     test('move function', () => {

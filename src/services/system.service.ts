@@ -1,5 +1,5 @@
 import Cell from "../types/cell.type";
-import TranslatedCoordinates from "../types/translated-coordinates.type";
+import TranslatedParts from "../types/translated-parts.type";
 
 class SystemService {
     board: Cell[][];
@@ -48,14 +48,26 @@ class SystemService {
     }
 
     // Translate coordinates
-    translateReportParts(report: string): TranslatedCoordinates {
+    translateReportParts(report: string): TranslatedParts {
         if (report.length > 0) {
             const reportParts = report.split(",");
             const row = reportParts[0];
             const col = reportParts[1];
+            const facing = reportParts[2];
             const translateRow = 5 - (+row);
             const translateCol = (+col) - 1;
-            return { "tCol": translateCol, "tRow": translateRow };
+            if (facing !== undefined) {
+                return {
+                    "tCol": translateCol,
+                    "tRow": translateRow,
+                    "facing": facing
+                };
+            } else {
+                return {
+                    "tCol": translateCol,
+                    "tRow": translateRow
+                };
+            }
         }
         return {};
     }
@@ -294,6 +306,50 @@ class SystemService {
             if (this.board[col][row].type === "empty") {
                 this.board[col][row].type = "wall";
             }
+        }
+    }
+
+    parseCommand(command: string): string | void {
+        if (command.length > 0) {
+            let row = -1;
+            let col = -1;
+            const commandParts = command.split(" ");
+            const rawCommand = commandParts[0];
+
+            if (commandParts[1]) {
+                let params = this.translateReportParts(commandParts[1]);
+                if (params.tRow !== undefined && params.tCol !== undefined) {
+                    row = params.tRow;
+                    col = params.tCol;
+                }
+            }
+
+            switch (rawCommand) {
+                case "PLACE_ROBOT":
+                    // this.placeRobot();
+                    break;
+                case "PLACE_WALL":
+                    this.placeWall(col, row);
+                    break;
+                case "LEFT":
+                    this.left();
+                    break;
+                case "RIGHT":
+                    this.right();
+                    break;
+                case "MOVE":
+                    this.move();
+                    break;
+                case "REPORT":
+                    this.report();
+                    break;
+            }
+        }
+    }
+
+    parseCommandScript(commandScript: string): string | void {
+        if (commandScript.length > 0) {
+        
         }
     }
 }
