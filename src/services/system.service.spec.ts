@@ -254,4 +254,21 @@ describe('System Service', () => {
         systemService.placeRobot(2, 4, "west");
         expect(systemService.board[2][4].type).toBe("robot-WEST");
     });
+
+    test('parseCommand function', () => {
+        systemService.clear();
+        expect(systemService.parseCommand("REPORT")).toBe("");
+        systemService.parseCommand("PLACE_ROBOT 3,3,NORTH");
+        expect(systemService.board[2][2].type).toBe("robot-NORTH");
+        systemService.parseCommand("PLACE_WALL 5,5");
+        expect(systemService.board[4][0].type).toBe("wall");
+        systemService.parseCommand("LEFT");
+        expect(systemService.board[2][2].type).toBe("robot-WEST");
+        systemService.parseCommand("RIGHT");
+        systemService.parseCommand("RIGHT");
+        expect(systemService.board[2][2].type).toBe("robot-EAST");
+        systemService.parseCommand("MOVE");
+        expect(systemService.board[2][2].type).toBe("empty");
+        expect(systemService.board[3][2].type).toBe("robot-EAST");
+    });
 });
