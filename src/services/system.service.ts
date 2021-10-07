@@ -326,7 +326,7 @@ class SystemService {
                 }
 
                 if (params.facing !== undefined) {
-                    facing = params.facing;
+                    facing = params.facing.toLowerCase();
                 }
             }
 
@@ -347,8 +347,7 @@ class SystemService {
                     this.move();
                     break;
                 case "REPORT":
-                    this.report();
-                    break;
+                    return this.report();
             }
         }
     }
