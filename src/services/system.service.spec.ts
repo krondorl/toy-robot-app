@@ -20,6 +20,7 @@ describe('System Service', () => {
                 expect(systemService.board[i][j].type).toBe("empty");
             }
         }
+        expect(systemService.reportData).toBe("");
     });
 
     test('isRobot function', () => {
@@ -271,4 +272,24 @@ describe('System Service', () => {
         expect(systemService.board[2][2].type).toBe("empty");
         expect(systemService.board[3][2].type).toBe("robot-EAST");
     });
+
+    test('parseCommandScript function', () => {
+        systemService.clear();
+        systemService.parseCommandScript(`PLACE_ROBOT 1,3,NORTH
+PLACE_WALL 1,1
+REPORT`);
+        expect(systemService.reportData).toBe("1,3,NORTH");
+//         systemService.clear();
+//         systemService.parseCommandScript(`PLACE_ROBOT 3,3,NORTH
+// PLACE_WALL 3,5
+// MOVE
+// MOVE
+// RIGHT
+// MOVE
+// MOVE
+// MOVE
+// REPORT`);
+//         expect(systemService.reportData).toBe();
+    });
+    
 });
