@@ -3,9 +3,11 @@ import TranslatedParts from "../types/translated-parts.type";
 
 class SystemService {
     board: Cell[][];
+    reportData: string;
 
     constructor() {
         this.board = [];
+        this.reportData = "";
         this.create();
     }
 
@@ -28,6 +30,7 @@ class SystemService {
                 this.board[i][j].type = "empty";
             }
         }
+        this.reportData = "";
     }
 
     isRobot(cellType: string): boolean {
@@ -354,7 +357,14 @@ class SystemService {
 
     parseCommandScript(commandScript: string): string | void {
         if (commandScript.length > 0) {
-        
+            const commands = commandScript.split(/\r?\n/);//?
+
+            commands.forEach((command) => {
+                const commandOutput = this.parseCommand(command);//?
+                if (typeof commandOutput === "string" && commandOutput.length > 0) {
+                    this.reportData = commandOutput;//?
+                }
+            });
         }
     }
 }
