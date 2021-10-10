@@ -279,17 +279,28 @@ describe('System Service', () => {
 PLACE_WALL 1,1
 REPORT`);
         expect(systemService.reportData).toBe("1,3,NORTH");
-//         systemService.clear();
-//         systemService.parseCommandScript(`PLACE_ROBOT 3,3,NORTH
-// PLACE_WALL 3,5
-// MOVE
-// MOVE
-// RIGHT
-// MOVE
-// MOVE
-// MOVE
-// REPORT`);
-//         expect(systemService.reportData).toBe();
+        systemService.clear();
+        systemService.parseCommandScript(`PLACE_ROBOT 2,2,WEST
+PLACE_WALL 1,1
+PLACE_WALL 2,2
+PLACE_WALL 1,3
+LEFT
+LEFT
+MOVE
+REPORT`);
+        expect(systemService.reportData).toBe("2,3,EAST");
+        systemService.clear();
+        systemService.parseCommandScript(`PLACE_ROBOT 3,3,NORTH
+PLACE_WALL 3,5
+MOVE
+MOVE
+RIGHT
+MOVE
+MOVE
+MOVE
+REPORT`);
+        expect(systemService.reportData).toBe("5,1,EAST");
+        console.log(systemService.history);
     });
     
 });
