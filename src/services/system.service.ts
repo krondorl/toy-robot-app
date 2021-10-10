@@ -4,11 +4,13 @@ import TranslatedParts from "../types/translated-parts.type";
 class SystemService {
     board: Cell[][];
     reportData: string;
+    history: string[];
 
     constructor() {
         this.board = [];
         this.reportData = "";
         this.create();
+        this.history = [];
     }
 
     create(): void {
@@ -31,6 +33,7 @@ class SystemService {
             }
         }
         this.reportData = "";
+        this.history = [];
     }
 
     isRobot(cellType: string): boolean {
@@ -364,6 +367,7 @@ class SystemService {
                 if (typeof commandOutput === "string" && commandOutput.length > 0) {
                     this.reportData = commandOutput;//?
                 }
+                this.history.push(this.report());
             });
         }
     }
