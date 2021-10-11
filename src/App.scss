@@ -20,6 +20,7 @@
   background-color: var(--clr-button-bg);
   border: 0.2rem solid var(--clr-text);
   color: var(--clr-text);
+  cursor: pointer;
   padding: 0.5rem;
 }
 
@@ -27,6 +28,7 @@
   border: 0.2rem solid var(--clr-text);
   color: var(--clr-h1);
   font-family: monospace;
+  min-height: 11rem;
   width: 100%;
 }
 
