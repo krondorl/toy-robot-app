@@ -14,15 +14,14 @@ class App extends React.Component<{}, MyState> {
     super(props);
     this.systemService = new SystemService();
     this.state = {
-      inputScript: "PLACE_ROBOT 3,3,NORTH\n" +
-        "PLACE_WALL 3,5\n" +
-        "MOVE\n" +
-        "MOVE\n" +
-        "RIGHT\n" +
-        "MOVE\n" +
-        "MOVE\n" +
-        "MOVE\n" +
-        "REPORT",
+      inputScript: "PLACE_ROBOT 2,2,WEST\n" +
+      "PLACE_WALL 1,1\n" +
+      "PLACE_WALL 2,2\n" +
+      "PLACE_WALL 1,3\n" +
+      "LEFT\n" +
+      "LEFT\n" +
+      "MOVE\n" +
+      "REPORT",
       reportData: ""
     };
     this.result = this.result.bind(this);
