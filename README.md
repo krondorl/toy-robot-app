@@ -20,6 +20,12 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `build` folder.
 
+## Screenshot
+
+The app looks like this.
+
+![Alt text](doc_img/toy-robot-app-screenshot.png "Main screen")
+
 ## Project description
 
 We use this test as an indication of the kind of code that a candidate would write on a day to day basis, so please take your time and submit representative code.
