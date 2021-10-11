@@ -6,10 +6,12 @@ function App() {
     <div className="container">
       <header className="app-header">
         <h1 className="h1">Toy Robot App</h1>
+        <h2 className="h2">Place the robot, build walls and move around!</h2>
         <img className="robot" src="robot.png" alt="" />
         <div className="form-container">
           <label htmlFor="command-script"></label>
-          <textarea className="textarea" name="" id="command-script"></textarea>
+          <textarea className="textarea" name="" id="command-script">
+          </textarea>
         </div>
         <div className="form-container">
           <button className="button">Get result</button>
