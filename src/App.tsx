@@ -2,11 +2,17 @@ import React from 'react';
 import './App.scss';
 import SystemService from './services/system.service';
 
-type MyState = { inputScript: string };
+type MyState = {
+  inputScript: string,
+  reportData: string
+};
 
 class App extends React.Component<{}, MyState> {
+  systemService: SystemService;
+
   constructor(props: any) {
     super(props);
+    this.systemService = new SystemService();
     this.state = {
       inputScript: "PLACE_ROBOT 3,3,NORTH\n" +
         "PLACE_WALL 3,5\n" +
@@ -16,7 +22,8 @@ class App extends React.Component<{}, MyState> {
         "MOVE\n" +
         "MOVE\n" +
         "MOVE\n" +
-        "REPORT"
+        "REPORT",
+      reportData: ""
     };
     this.result = this.result.bind(this);
   }
@@ -26,7 +33,9 @@ class App extends React.Component<{}, MyState> {
   }
 
   result(): void {
-    console.log(this.state.inputScript);
+    this.systemService.clear();
+    this.systemService.parseCommandScript(this.state.inputScript);
+    this.setState({ reportData: this.systemService.reportData });
   }
 
   render() {
@@ -47,7 +56,7 @@ class App extends React.Component<{}, MyState> {
           </div>
           <div className="form-container">
             Result:
-            <div className="result"><code></code></div>
+            <div className="result"><code>{this.state.reportData}</code></div>
           </div>
         </main>
         <footer className="footer">
