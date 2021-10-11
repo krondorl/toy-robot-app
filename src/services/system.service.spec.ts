@@ -300,7 +300,6 @@ MOVE
 MOVE
 REPORT`);
         expect(systemService.reportData).toBe("5,1,EAST");
-        console.log(systemService.history);
     });
     
 });
