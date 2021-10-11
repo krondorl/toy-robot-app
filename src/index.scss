@@ -27,5 +27,7 @@ body {
 }
 
 .h2 {
+  border-bottom: 0.3rem dashed var(--clr-h2-underline);
+  display: inline-block;
   font-size: calc(1.5rem);
 }
