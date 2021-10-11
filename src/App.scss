@@ -23,6 +23,11 @@
   cursor: pointer;
   font-weight: bold;
   padding: 0.5rem;
+  transition: background-color 125ms ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-h2-underline);
+  }
 }
 
 .textarea {
