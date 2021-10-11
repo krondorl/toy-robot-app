@@ -16,7 +16,7 @@ function App() {
         </div>
         <div className="form-container">
           Result:
-          <div className="result"></div>
+          <div className="result"><code></code></div>
         </div>
         <div>
 
