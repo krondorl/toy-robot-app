@@ -1,24 +1,11 @@
 # Toy Robot Game
 
-## First things first
-
-Run `npm install` to install the Node packages.
-
 ## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.
+1. Run `npm install` to install the Node packages.
+2. Execute `npm start` to run the app. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Use `npm test` to launch the test runner in the interactive watch mode.
+4. Run `npm run build` to build the app for production to the `build` folder.
 
 ## Screenshot
 
